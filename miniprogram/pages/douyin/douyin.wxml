@@ -1,0 +1,21 @@
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    
+    <view class="content">
+      <image class="slide-image" show-menu-by-longpress="{{true}}" src="{{image}}" mode="widthFix" />
+    </view>
+    <view>
+      <button  class="button" data-url="{{image}}"> 
+      长按图片识别二维码
+      </button>
+    </view>
+
+    <view>
+      <button  class="button" data-url="{{image}}" bindtap="uploadPhoto"> 
+      上传图片
+      </button>
+    </view>
+
+      
+  </view>
+</scroll-view>
