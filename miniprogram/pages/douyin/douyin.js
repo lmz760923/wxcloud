@@ -36,38 +36,19 @@ Page({
         })
         const fileID = res.fileID;
         console.log(fileID);
-        /*const db = cloud.database()
 
-        db.collection('images').add({
-          
+        cloud.database().collection('images').doc('b6cf38526732048b00cb2c8b675c9614').update({
           data: {
-            
             imageurl: fileID,
-            
-          },
-          success: function(res) {
-            
-            console.log(res)
-          }
-      })
+         }
+        }).then(res=>{console.log(res);
+                      wx.showToast({
+                        title: 'title',
+                      })
+                      this.setData({image:fileID})
+                      }).catch(err=>{console.log(err)})
 
-
-
-        
-
-        collection.get({
-          success:(res)=>{
-            
-            console.log(res)
-          }
-        })
-
-        collection.doc('b6cf38526732048b00cb2c8b675c9614').update({
-               data: {
-               imageurl: fileID,
-            }
-        })*/
-
+      
   
 
       },
@@ -89,16 +70,14 @@ Page({
   },
 
   getList() {
-    const db = wx.cloud.database()
-    const collection = db.collection('images');
-    collection.doc('b6cf38526732048b00cb2c8b675c9614').get({
-      success:(res)=>{
-        this.setData({image:res.data(0).imageurl})
-        console.log(res.data(0).imageurl)
-        console.log(image)
-        
+    wx.cloud.database().collection('images').doc('b6cf38526732048b00cb2c8b675c9614').get().then(
+      res=>{
+        this.setData({image:res.data.imageurl})
+        console.log(res.data)
       }
-    })
+    ).catch(err=>console.log(err))
+
+
   },
 
 })

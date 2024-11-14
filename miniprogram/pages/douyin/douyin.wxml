@@ -9,13 +9,13 @@
       长按图片识别二维码
       </button>
     </view>
-
+<!--
     <view>
       <button  class="button" data-url="{{image}}" bindtap="uploadPhoto"> 
       上传图片
       </button>
     </view>
-
+-->
       
   </view>
 </scroll-view>

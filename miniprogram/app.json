@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/douyin/douyin",
     "pages/index/index",
     "pages/goods-list/index",
     "pages/examples/index",
@@ -15,8 +16,8 @@
     "pages/cloudbaseModuleDetail/index",
     "pages/cloudbaseModuleInstallTips/index",
     "pages/cloudbaseModuleGuide/index",
-    "pages/business/index",
-     "pages/douyin/douyin"
+    "pages/business/index"
+     
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -39,11 +40,13 @@
         "iconPath": "images/icons/home.png",
         "selectedIconPath": "images/icons/home-active.png"
       },
+
       {
         "pagePath": "pages/index/index",
         "text": "快速开始",
         "iconPath": "images/icons/home.png",
         "selectedIconPath": "images/icons/home-active.png"
+       
       },
       {
         "pagePath": "pages/examples/index",
