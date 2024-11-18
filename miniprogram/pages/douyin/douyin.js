@@ -35,18 +35,27 @@ Page({
           duration:2000
         })
         const fileID = res.fileID;
-        console.log(fileID);
 
-        cloud.database().collection('images').doc('b6cf38526732048b00cb2c8b675c9614').update({
+        wx.cloud.callFunction({
+          name: 'quickstartFunctions',
           data: {
+            type: 'addimageurl',
             imageurl: fileID,
-         }
-        }).then(res=>{console.log(res);
-                      wx.showToast({
-                        title: 'title',
-                      })
-                      this.setData({image:fileID})
-                      }).catch(err=>{console.log(err)})
+          }
+        }).then((resp) => {
+          console.log('resp:',resp);
+
+          this.setData({
+            
+            image: resp.result.imageurl,
+          });
+          
+          
+        }).catch((e) => {
+
+          const {errCode,errMsg}=e
+          console.log(e);
+        });
 
       
   
@@ -70,7 +79,7 @@ Page({
   },
 
   getList() {
-    wx.cloud.database().collection('images').doc('b6cf38526732048b00cb2c8b675c9614').get().then(
+    wx.cloud.database().collection('images').doc('imageurl').get().then(
       res=>{
         this.setData({image:res.data.imageurl})
         console.log(res.data)

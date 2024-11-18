@@ -1,3 +1,4 @@
+//const { PostProcess } = require('XrFrame/xrFrameSystem');
 const { envList } = require('../../envList');
 
 // pages/me/index.js
@@ -7,9 +8,9 @@ Page({
    */
   data: {
     openId: '',
-    showTip: false,
-    title:"",
-    content:""
+    showTip: true,
+    title:"title",
+    content:"content"
   },
 
   getOpenId() {
@@ -57,4 +58,21 @@ Page({
       url: `/pages/exampleDetail/index?envId=${envList?.[0]?.envId}&type=getMiniProgramCode`,
     });
   },
+  my_request(){
+    wx.request(
+      {
+        url: 'http://119.29.59.22/users/insert', //仅为示例，并非真实的接口地址
+        data: JSON.stringify({id:1009,name:'xxx',password:100,number:100}),
+        dataType:"json",
+        method: 'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success (res) {
+          console.log(res.data)
+        }
+      }
+    );
+  },
+
 });
