@@ -1,6 +1,6 @@
 //const { PostProcess } = require('XrFrame/xrFrameSystem');
 const { envList } = require('../../envList');
-
+const app=getApp();
 // pages/me/index.js
 Page({
   /**
@@ -8,7 +8,7 @@ Page({
    */
   data: {
     openId: '',
-    showTip: true,
+    showTip: false,
     title:"title",
     content:"content"
   },
@@ -61,18 +61,82 @@ Page({
   my_request(){
     wx.request(
       {
-        url: 'http://119.29.59.22/users/insert', //仅为示例，并非真实的接口地址
+        url: app.globalData.requesturl+'/users/insert', //仅为示例，并非真实的接口地址
         data: JSON.stringify({id:1009,name:'xxx',password:100,number:100}),
         dataType:"json",
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json' 
+        },
+        header: {
+          'Test-type': 'application/json' 
         },
         success (res) {
-          console.log(res.data)
+          //console.log(res.data)
+          wx.showToast({
+            title: 'success',
+            content: ''+res.data.id,
+          })
         }
       }
     );
   },
+
+  my_request_get(){
+    
+    wx.request({
+      url:app.globalData.requesturl + '/users/select',
+      method: 'GET',
+      success(res){
+        console.log(res.data);
+      },
+      fail(res){console.log(res);},
+    });
+  },
+
+  pay_request(e){
+    wx.showToast({
+      title: '请先开通商户号',
+    })
+    return;
+    let that = this;
+        let formData = {orderid:'abcd12345678',money:0.1}
+        
+        wx.cloud.callFunction({
+            name: "pay",
+            data: {
+                orderid:formData.orderid,
+                money: formData.money
+            },
+            success(res) {
+                console.log("提交成功", res.result)
+                that.pay(res.result)
+            },
+            fail(res) {
+                console.log("提交失败", res)
+            }
+        })
+  },
+
+  //实现小程序支付
+  pay(payData) {
+    //官方标准的支付方法
+    wx.requestPayment({
+        timeStamp: payData.timeStamp,
+        nonceStr: payData.nonceStr,
+        package: payData.package, //统一下单接口返回的 prepay_id 格式如：prepay_id=***
+        signType: 'MD5',
+        paySign: payData.paySign, //签名
+        success(res) {
+            console.log("支付成功", res)
+        },
+        fail(res) {
+            console.log("支付失败", res)
+        },
+        complete(res) {
+            console.log("支付完成", res)
+        }
+    })
+},
 
 });

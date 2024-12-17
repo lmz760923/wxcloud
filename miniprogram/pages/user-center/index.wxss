@@ -14,6 +14,7 @@
   border-top-right-radius: 30rpx;
   height: calc(100vh - 120rpx);
   position: relative;
+
 }
 
 .userinfo_container {

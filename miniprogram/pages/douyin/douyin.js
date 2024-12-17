@@ -1,10 +1,15 @@
+const app=getApp()
 Page({
 
   data: {
     image: '',
+    userinfo:{openid:'',
+              appid:'',
+              unionid:''},
 
   },
 
+  
   uploadPhoto: function() {
     //this.getList();
 
@@ -75,18 +80,32 @@ Page({
   onLoad: function (options) {
     this.getList();
 
-
   },
 
   getList() {
     wx.cloud.database().collection('images').doc('imageurl').get().then(
       res=>{
         this.setData({image:res.data.imageurl})
-        console.log(res.data)
+        if (app.globalData.userinfo.openid!=''){
+        this.setData({userinfo: app.globalData.userinfo})
+        //console.log('first:',app.globalData)
       }
-    ).catch(err=>console.log(err))
+      else
+      {
+        /*console.log('set callback');
+        app.callback=(uf)=>{
+          if (uf.openid!=''){this.setData({userinfo:uf})
+        }
+      }*/
+    }
 
 
-  },
+  }).catch((e) => {
 
-})
+    const {errCode,errMsg}=e
+    console.log(e);
+  })
+},
+
+}
+)

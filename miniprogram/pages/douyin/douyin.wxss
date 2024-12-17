@@ -1,1 +1,31 @@
 /* pages/douyin/douyin.wxss */
+.container{
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content{
+  background-color: white
+}
+
+.button{
+  margin:20rpx;
+  width: 50%;
+  border: 1px solid rgb(125, 125, 255);
+  border-radius: 50rpx;
+  background-color: beige;
+  line-height: 100rpx;
+  text-align: center;
+  font-weight: 800;
+
+}
+
+.button:hover{
+  background-color: beige;
+  transition:all 0.5s ease-out;
+  box-shadow: 10px 10px 5px #888888;
+  transform: scale(0.7);
+}
