@@ -34,6 +34,7 @@ App({
       this.globalData.userinfo.openid=res.result.openid;
       this.globalData.userinfo.appid=res.result.appid;
       this.globalData.userinfo.unionid=res.result.unionid;
+      
       /*
       if (this.callback){this.callback(res.result.userinfo);
           console.log('callback');  
