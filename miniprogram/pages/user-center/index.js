@@ -13,6 +13,10 @@ Page({
     content:"content"
   },
 
+  onLoad(e){
+    this.setData({openId: app.globalData.userinfo.openid});
+  },
+
   getOpenId() {
     wx.showLoading({
       title: '',
@@ -66,11 +70,10 @@ Page({
         dataType:"json",
         method: 'POST',
         header: {
-          'content-type': 'application/json' 
-        },
-        header: {
+          'content-type': 'application/json' ,
           'Test-type': 'application/json' 
         },
+      
         success (res) {
           //console.log(res.data)
           wx.showToast({
@@ -85,26 +88,50 @@ Page({
   my_request_get(){
     
     wx.request({
-      url:app.globalData.requesturl + '/users/select',
-      method: 'GET',
-      success(res){
-        console.log(res.data);
+      url:'https://cloud365c-6gi38xrod99be338-1306499834.ap-shanghai.app.tcloudbase.com/pay_notify',
+      method: 'POST',
+      data: {
+        image: 'test0...',
+
       },
-      fail(res){console.log(res);},
+      success(res){
+        console.log('success:',res.data.msg);
+      },
+      fail(res){console.log('fail:',res);},
     });
+  },
+
+  dataservice(){
+    wx.cloud.callFunction(
+      {
+        name:'dataservice',
+        data:{
+          type:'test',
+          name:'test',
+          age:45,
+        },
+        success(res){
+          console.log("success",res);
+        },
+        fail(res){
+          console.log(res);
+        }
+      }
+    );
   },
 
   pay_request(e){
     wx.showToast({
       title: '请先开通商户号',
     })
-    return;
+    //return;
     let that = this;
         let formData = {orderid:'abcd12345678',money:0.1}
         
         wx.cloud.callFunction({
             name: "pay",
             data: {
+
                 orderid:formData.orderid,
                 money: formData.money
             },
@@ -137,6 +164,12 @@ Page({
             console.log("支付完成", res)
         }
     })
+},
+
+navtov3pay(){
+  wx.navigateTo({
+    url: '/pages/v3pay/v3pay',
+  })
 },
 
 });

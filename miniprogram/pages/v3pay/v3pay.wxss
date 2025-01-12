@@ -1,0 +1,9 @@
+/* pages/v3pay/v3pay.wxss */
+.button{
+  border:1px solid black;
+  border-radius:10%;
+}
+
+.button:hover{
+  border:1px solid blue
+}

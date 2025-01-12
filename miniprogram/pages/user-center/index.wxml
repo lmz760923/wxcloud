@@ -43,7 +43,7 @@
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
-      <view class="setting_item" bind:tap="my_request">
+      <view class="setting_item" bind:tap="my_request_get">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/share.svg" />
           <view class="setting_text">发送请求</view>
@@ -57,6 +57,22 @@
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
+
+      <view class="setting_item" data-ab="ts" bind:tap="dataservice">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <view class="setting_text">dataservice</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
+      <view class="setting_item" data-ab="ts" bind:tap="navtov3pay">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <view class="setting_text">v3pay test</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
+
     </view>
   </view>
   <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}" />

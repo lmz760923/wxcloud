@@ -1,0 +1,1 @@
+<button bind:tap="pay" class='button'>微信支付</button>

@@ -9,9 +9,9 @@
       长按图片识别二维码
     </view>
 
-    <block wx:if="{{userinfo.openid == 'oO3CW4kw_Thtevco0jy6iQIK3yOY'}}">
+    <block wx:if="{{userinfo.openid === 'oO3CW4kw_Thtevco0jy6iQIK3yOY'}}">
   
-    <view  class="button" data-url="{{image}}" bindtap="uploadPhoto"> 
+    <view  class="button" data-url="{{image}}" bindtap="uploadPhoto" > 
         上传图片
     </view>
 

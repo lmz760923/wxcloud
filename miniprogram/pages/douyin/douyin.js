@@ -13,13 +13,14 @@ Page({
   uploadPhoto: function() {
     //this.getList();
 
-    wx.chooseImage({
+    wx.chooseMedia({
       count:1,
+      madiaType:['image'],
       sizeType:'compressed',
       sourceType:['album', 'camera'],
       success:res=>{
         // console.log(res.tempFilePaths[0])
-        var photoTempPath = res.tempFilePaths[0]
+        var photoTempPath = res.tempFiles[0].tempFilePath
         this.uploadPhotoToDatabase(photoTempPath)
       }
     })
@@ -79,25 +80,28 @@ Page({
 
   onLoad: function (options) {
     this.getList();
+    if (app.globalData.userinfo.openid!=''){
+      this.setData({userinfo: app.globalData.userinfo})
 
+    }
+
+  },
+
+
+
+  onShow: function(e){
+    if (app.globalData.userinfo.openid!=''){
+      this.setData({userinfo: app.globalData.userinfo})
+
+    }
+   
   },
 
   getList() {
     wx.cloud.database().collection('images').doc('imageurl').get().then(
       res=>{
         this.setData({image:res.data.imageurl})
-        if (app.globalData.userinfo.openid!=''){
-        this.setData({userinfo: app.globalData.userinfo})
-        //console.log('first:',app.globalData)
-      }
-      else
-      {
-        /*console.log('set callback');
-        app.callback=(uf)=>{
-          if (uf.openid!=''){this.setData({userinfo:uf})
-        }
-      }*/
-    }
+        
 
 
   }).catch((e) => {
@@ -106,6 +110,8 @@ Page({
     console.log(e);
   })
 },
+
+
 
 }
 )

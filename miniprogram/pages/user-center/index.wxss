@@ -25,6 +25,7 @@
   position: absolute;
   top: -30rpx;
   padding: 0rpx 60rpx;
+  
 }
 
 .avatar {

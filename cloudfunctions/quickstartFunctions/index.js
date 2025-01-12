@@ -6,8 +6,7 @@ const updateRecord = require('./updateRecord/index');
 const sumRecord = require('./sumRecord/index');
 const fetchGoodsList = require('./fetchGoodsList/index');
 const genMpQrcode = require('./genMpQrcode/index');
-const addimageurl=require('./addimageurl');
-const pay=require('./pay');
+const addimageurl=require('./addimageurl/index');
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch (event.type) {
@@ -29,8 +28,7 @@ exports.main = async (event, context) => {
       return await genMpQrcode.main(event, context);
     case 'addimageurl':
       return await addimageurl.main(event,context);
-    case 'pay':
-      return await pay.main(event,context);
+    
   }
 };
         

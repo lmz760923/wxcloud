@@ -147,7 +147,7 @@ Page({
       title: '',
     });
     // 让用户选择一张图片
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1,
       success: chooseResult => {
         // 将图片上传至云存储空间
@@ -162,6 +162,7 @@ Page({
             imgSrc: res.fileID
           });
           wx.hideLoading();
+          
         }).catch((e) => {
           wx.hideLoading();
         });
