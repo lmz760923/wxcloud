@@ -63,10 +63,10 @@ var eventdata = {
   
   queryStringParameters: {},
   requestContext: {
-    appId: '1331667450',
-    envId: 'maisui-1gpxzowa068d3a94',
+    appId: 'wx74862e0dfcf69954',
+    
     requestId: 'bc21d59c-64b1-4da7-876b-509d81680d42',
-    uin: '100039550644'
+   
   }
 };
 Page({
@@ -114,7 +114,7 @@ Page({
         }
       },
       success: res => {
-        console.log(res);
+        console.log('统一下单success:',res);
         // 生成随机32位字符串的函数
         function generateRandomString(length = 32) {
           const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -134,7 +134,7 @@ Page({
           nonceStr,
           package: packageStr
         };
-        console.log(params);
+        console.log('payrequest 签名参数:',params);
         wx.cloud.callFunction({
           name: 'v3pay',
           data: {
@@ -142,7 +142,7 @@ Page({
             params
           },
           success: ress => {
-            console.log(ress);
+            console.log('payrequest 签名结果:',ress);
             wx.requestPayment({
               nonceStr,
               package: packageStr,
@@ -150,20 +150,20 @@ Page({
               timeStamp,
               paySign: ress.result,
               success: res => {
-                console.log(res);
+                console.log('payrequest success:',res);
               },
               fail: err => {
-                console.log(err);
+                console.log('payrequest fail:',err);
               }
             })
           },
           fail: err => {
-            console.log(err);
+            console.log('payrequest 签名fail:',err);
           }
         })
       },
       fail: err => {
-        console.log(err);
+        console.log('统一下单fail:',err);
       }
     })
   }
