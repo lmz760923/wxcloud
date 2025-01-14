@@ -12,20 +12,6 @@
       </block>
     </view>
     <view class="settings_container">
-      <!-- <view class="setting_item">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/setting.svg" />
-          <view class="setting_text">个人信息设置</view>
-        </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view> -->
-      <!-- <view class="setting_item">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/question.svg" />
-          <view class="setting_text">常见问题</view>
-        </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view> -->
       <view class="setting_item">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/customer-service.svg" />
@@ -43,20 +29,7 @@
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
-      <view class="setting_item" bind:tap="my_request_get">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/share.svg" />
-          <view class="setting_text">发送请求</view>
-        </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view>
-      <view class="setting_item" data-ab="ts" bind:tap="pay_request">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/share.svg" />
-          <view class="setting_text">付款请求</view>
-        </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view>
+          
 
       <view class="setting_item" data-ab="ts" bind:tap="dataservice">
         <view class="left">
@@ -69,6 +42,13 @@
         <view class="left">
           <image class="setting_icon" src="../../images/icons/share.svg" />
           <view class="setting_text">v3pay test</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
+      <view class="setting_item" data-ab="ts" bind:tap="navtoweb">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <view class="setting_text">navigate web</view>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>

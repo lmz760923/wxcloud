@@ -141,7 +141,10 @@ exports.main = async (event, context) => {
     // 注意：最后处理完自己逻辑之后一定要通知给微信，不然一直会重复回调
     return {
       code: 200,
-      message: '处理完成'
+      message: '处理完成',
+      trade_no:out_trade_no,
+      des:decryptedData,
+
     };
   } catch (error) {
     return {

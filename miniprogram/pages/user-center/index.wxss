@@ -6,6 +6,7 @@
 
 .top_bg {
   height: 120rpx;
+  background-color: blue;
 }
 
 .main_content {
@@ -25,6 +26,8 @@
   position: absolute;
   top: -30rpx;
   padding: 0rpx 60rpx;
+  background-color: rgba(225, 0,0, 0.3);
+  width: 100%;
   
 }
 

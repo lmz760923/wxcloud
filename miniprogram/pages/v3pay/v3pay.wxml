@@ -1,1 +1,2 @@
 <button bind:tap="pay" class='button'>微信支付</button>
+<button bind:tap="cb" class="button">支付回调模拟</button>

@@ -85,22 +85,7 @@ Page({
     );
   },
 
-  my_request_get(){
-    
-    wx.request({
-      url:'https://cloud365c-6gi38xrod99be338-1306499834.ap-shanghai.app.tcloudbase.com/pay_notify',
-      method: 'POST',
-      data: {
-        image: 'test0...',
-
-      },
-      success(res){
-        console.log('success:',res.data.msg);
-      },
-      fail(res){console.log('fail:',res);},
-    });
-  },
-
+  
   dataservice(){
     wx.cloud.callFunction(
       {
@@ -120,55 +105,15 @@ Page({
     );
   },
 
-  pay_request(e){
-    wx.showToast({
-      title: '请先开通商户号',
-    })
-    //return;
-    let that = this;
-        let formData = {orderid:'abcd12345678',money:0.1}
-        
-        wx.cloud.callFunction({
-            name: "pay",
-            data: {
-
-                orderid:formData.orderid,
-                money: formData.money
-            },
-            success(res) {
-                console.log("提交成功", res.result)
-                that.pay(res.result)
-            },
-            fail(res) {
-                console.log("提交失败", res)
-            }
-        })
-  },
-
-  //实现小程序支付
-  pay(payData) {
-    //官方标准的支付方法
-    wx.requestPayment({
-        timeStamp: payData.timeStamp,
-        nonceStr: payData.nonceStr,
-        package: payData.package, //统一下单接口返回的 prepay_id 格式如：prepay_id=***
-        signType: 'MD5',
-        paySign: payData.paySign, //签名
-        success(res) {
-            console.log("支付成功", res)
-        },
-        fail(res) {
-            console.log("支付失败", res)
-        },
-        complete(res) {
-            console.log("支付完成", res)
-        }
-    })
-},
-
+  
 navtov3pay(){
   wx.navigateTo({
     url: '/pages/v3pay/v3pay',
+  })
+},
+navtoweb(){
+  wx.navigateTo({
+    url: '/pages/web/index?url=https://www.baidu.com&title=webbrowse',
   })
 },
 
