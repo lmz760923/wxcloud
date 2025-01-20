@@ -34,6 +34,7 @@ Page({
           openId: resp.result.openid,
         });
         wx.hideLoading();
+        console.log('openid:',resp.result.openid);
       })
       .catch((e) => {
         wx.hideLoading();

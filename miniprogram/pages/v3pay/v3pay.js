@@ -114,7 +114,7 @@ Page({
         }
       },
       success: res => {
-        console.log('统一下单success:',res);
+        console.log('统一下单:',res);
         // 生成随机32位字符串的函数
         function generateRandomString(length = 32) {
           const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

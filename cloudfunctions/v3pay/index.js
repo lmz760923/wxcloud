@@ -1,13 +1,12 @@
 const cloud = require('wx-server-sdk');
 const crypto = require('crypto'); // 需安装 npm install crypto
 const request = require('request-promise'); // 需安装npm i --save request      npm i --save request-promise
-const fs = require('fs')
+const fs = require('fs');
 cloud.init();
-
 // 配置微信商户信息
 const mchId = '1558950191'; // 商户号
 const serialNo = '34345964330B66427E0D3D28826C4993C77E631F'; // 证书序列号
-const appid = 'wx74862e0dfcf69954';
+const appid = 'wx74862e0dfcf69954';// 
 const keyPath = 'apiclient_key.pem'; // 密钥证书路径
 const jsapiUrl = 'https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi'; // 请求url
 
