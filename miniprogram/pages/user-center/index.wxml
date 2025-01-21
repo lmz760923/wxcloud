@@ -53,6 +53,22 @@
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
 
+      <view class="setting_item" data-ab="ts" bind:tap="callcloud">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <view class="setting_text">call cloud</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
+
+      <view class="setting_item" data-ab="ts" bind:tap="fileupload">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <view class="setting_text">upload</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
+
     </view>
   </view>
   <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}" />

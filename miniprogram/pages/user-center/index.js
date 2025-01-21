@@ -15,6 +15,55 @@ Page({
 
   onLoad(e){
     this.setData({openId: app.globalData.userinfo.openid});
+    
+
+  },
+
+  fileupload(){
+    const that = this
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image','video'],
+      sourceType: ['album', 'camera'],
+      maxDuration: 30,
+      camera: 'back',
+      async success(res){
+        console.log('res:',res)
+        const result = await that.uploadFile(res.tempFiles[0].tempFilePath, 'xx.jpg' ,function(res){
+          console.log(`上传进度：${res.progress}%，已上传${res.totalBytesSent}B，共${res.totalBytesExpectedToSend}B`)
+          // if(res.progress > 50){ // 测试文件上传一半就终止上传
+          //   return false
+          // }
+        })
+        console.log(result)
+      }
+    })
+  },
+
+  uploadFile(file, path, onCall = () => {}) {
+    return new Promise((resolve, reject) => {
+      const task = wx.cloud.uploadFile({
+        cloudPath: path,
+        filePath: file,
+        config: {
+          env: 'prod-4g2nznbh9c0d99f6' // 需要替换成自己的微信云托管环境ID
+        },
+        success: res => resolve(res.fileID),
+        fail: e => {
+          const info = e.toString()
+          if (info.indexOf('abort') != -1) {
+            reject(new Error('【文件上传失败】中断上传'))
+          } else {
+            reject(new Error('【文件上传失败】网络或其他错误'))
+          }
+        }
+      })
+      task.onProgressUpdate((res) => {
+        if (onCall(res) == false) {
+          task.abort()
+        }
+      })
+    })
   },
 
   getOpenId() {
@@ -117,5 +166,16 @@ navtoweb(){
     url: '/pages/web/index?url=https://www.baidu.com&title=webbrowse',
   })
 },
+
+async callcloud(){
+let result=await wx.cloud.callContainer({
+config:{env: 'prod-4g2nznbh9c0d99f6'},
+path: '/products/41',
+method: 'GET',
+header:{'X-WX-SERVICE':'stu01-1',}
+
+})
+console.log('result:',result)
+}
 
 });
